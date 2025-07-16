@@ -16,33 +16,30 @@ We process transaction-level logs (e.g., `deposit`, `borrow`, `repay`, `redeemUn
 
         ┌────────────┐
         │ JSON Input │
-        └─────┬──────┘
-              │
-   ┌──────────▼──────────┐
-   │ Data Preprocessing  │
-   │ - Normalize amounts │
-   │ - Parse timestamps  │
-   └──────────┬──────────┘
-              │
- ┌────────────▼────────────┐
- │ Feature Engineering     │
- │ - Borrow/Repay ratio    │
- │ - Txn counts/types      │
- │ - Liquidation history   │
- └────────────┬────────────┘
-              │
-      ┌───────▼────────┐
-      │ ML Model (RF)  │
-      │ - Trained on   │
-      │   engineered   │
-      │   behavior     │
-      └───────┬────────┘
-              │
-     ┌────────▼─────────┐
-     │ Scoring Script   │
-     │ - Score wallets  │
-     │   0–1000 range   │
-     └──────────────────┘
+        └────────────┘
+
+        ┌────────────────────┐
+        │ Clean & Prepare    │
+        │ - Normalize data   │
+        │ - Format time      │
+        └────────────────────┘
+
+        ┌────────────────────┐
+        │ Create Features    │
+        │ - Ratios, counts   │
+        │ - History flags    │
+        └────────────────────┘
+
+        ┌────────────────────┐
+        │ Train ML Model     │
+        │ - Random Forest    │
+        └────────────────────┘
+
+        ┌────────────────────┐
+        │ Score Wallets      │
+        │ - Range: 0–1000    │
+        └────────────────────┘
+
 
 ---
 
@@ -66,7 +63,7 @@ We process transaction-level logs (e.g., `deposit`, `borrow`, `repay`, `redeemUn
 Use the one-step scoring script:
 
 ```bash
-python wallet_score_generator.py --input sample_data.json --output scores.json
+python avee-credit.ipynb --input user-wallet-transcations.json --output wallet_scores.csv
 ```
 
 ## Analysis
