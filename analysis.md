@@ -45,3 +45,10 @@ The wallet credit scores were bucketed into 10 equal ranges between 0 and 1000:
 - Indicate healthy participation and responsible usage of the protocol.
 
 ---
+
+## Conclusion
+The model successfully distinguishes risky from responsible DeFi users based on their Aave V2 behavior. While the majority of users fall into the safe zone, the system highlights critical outliers that could represent financial risks. Future improvements can include incorporating time-series behavior, integrating more DeFi protocols, or combining off-chain indicators (if ever allowed in cross-layer analysis).
+
+
+---
+
